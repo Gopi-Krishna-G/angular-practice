@@ -1,0 +1,85 @@
+<div class="form">
+  <form #myForm="ngForm" (ngSubmit)="onClickSubmit(myForm.value)">
+    <input class="field" type="text" name="name" placeholder="Name" ngModel />
+    <input class="field" type="text" name="genre" placeholder="Genre" ngModel />
+    <input
+      class="field"
+      type="text"
+      name="creator"
+      placeholder="Creator"
+      ngModel
+    />
+    <input
+      type="radio"
+      name="book"
+      id="book"
+      (click)="setradio('Book')"
+      value="true"
+      ngModel
+    />Book
+    <input
+      type="radio"
+      name="book"
+      id="song"
+      (click)="setradio('Song')"
+      value="false"
+      ngModel
+    />Song
+    <input
+      *ngIf="isSelected('Song')"
+      class="field"
+      type="number"
+      name="time"
+      placeholder="Time Duration"
+      ngModel
+    />
+    <button class="add">Add</button>
+  </form>
+</div>
+
+<div class="table-container">
+  <div class="book-list">
+    <h2>Book List</h2>
+    <table class="book-table">
+      <tr>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Creator</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let element of books_data; index as i">
+        <td>{{ books_data[i].name }}</td>
+        <td>{{ books_data[i].genre }}</td>
+        <td>{{ books_data[i].creator }}</td>
+        <td>
+          <button *ngIf="true" (click)="removeBook(i)">
+            <mat-icon class="mat">delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="song-list">
+    <h2>Song List</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Creator</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let element of songs_data; index as i">
+        <td>{{ songs_data[i].name }}</td>
+        <td>{{ songs_data[i].genre }}</td>
+        <td>{{ songs_data[i].creator }}</td>
+        <td>{{ songs_data[i].time }}</td>
+        <td>
+          <button *ngIf="true" (click)="removeSong(i)">
+            <mat-icon class="mat">delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
