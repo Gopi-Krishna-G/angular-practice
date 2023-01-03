@@ -12,12 +12,17 @@ export class AppComponent {
   songs_data = [];
   listArr = [];
   myProperty = 'true';
+  info = '';
 
   onClickSubmit(formData) {
     if (formData.book == 'true') {
       this.books_data.push(formData);
-    } else {
+      this.info = ' A book is added to collection ';
+    } else if (formData.book == 'false') {
       this.songs_data.push(formData);
+      this.info = ' A song is added to collection ';
+    } else {
+      this.info = 'what do you need to add ? A book? or a song ? ';
     }
 
     console.log(formData);
